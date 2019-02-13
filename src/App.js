@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: 'Banana Cat Giferizer',
+      message: '',
       kittenData: []
     }
   }
@@ -18,20 +18,20 @@ class App extends Component {
       const kittens = await getGifs();
       console.log(kittens.data.data);
       this.setState({
+        message: 'Banana Cat Giferizer',
         kittenData: kittens.data.data
-      })
+      });
     }
     catch(error) {
       console.error(error)
-    }
-  }
+    };
+  };
 
   render() {
     return (
       <div className="App">
         <h1>{this.state.message}</h1>
-        <KittenList />
-        <KittenListItem />
+        <KittenList kittenData={this.state.kittenData} />
       </div>
     );
   }
